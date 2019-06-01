@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../screens/game_screen/challenge_widget_widget.dart';
+import '../util.dart';
 import 'widgets/center.dart';
 import 'widgets/text.dart';
 
@@ -80,7 +81,7 @@ abstract class ChallengeWidget {
       ),
       child: Column(children: [
         Text(name()),
-        _content(),
+        pad(_content()),
       ]),
     );
   }

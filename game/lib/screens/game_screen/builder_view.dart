@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/challenge_widget.dart';
+import '../../util.dart';
 
 class BuilderView extends StatelessWidget {
   final ChallengeWidget currentWidget;
@@ -28,7 +29,7 @@ class BuilderView extends StatelessWidget {
         Expanded(
           child: Container(
             color: Colors.cyan,
-            child: currentWidget.toBuilderWidget(),
+            child: pad(currentWidget.toBuilderWidget()),
           ),
         ),
         slider(context),
