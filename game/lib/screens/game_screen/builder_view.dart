@@ -78,6 +78,7 @@ class _BuilderViewState extends State<BuilderView> {
                   children: widget.listEditableProperties()
                     .map((entry) {
                       return TextField(
+                          controller: TextEditingController(text: entry.value?.getAsString()),
                           decoration: InputDecoration(labelText: entry.key),
                           onChanged: (value) {
                             widget.setPropertyValue(entry.key, value);
