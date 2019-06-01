@@ -46,7 +46,7 @@ class _GameScreenState extends State<GameScreen> {
 
   doVerify() {
     bool isEqual = currentWidget != null && challenge.child.toJson() == currentWidget.toJson();
-    _snack(isEqual ? 'Ganhou!' : 'Perdeu, otário');
+    _snack(isEqual ? 'Well done, you won!! 🎉' : 'Oops! Not quite right :(');
   }
 
   Widget slider(BuildContext context) {
