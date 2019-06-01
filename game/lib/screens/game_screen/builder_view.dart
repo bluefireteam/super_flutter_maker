@@ -15,7 +15,6 @@ class BuilderView extends StatefulWidget {
 }
 
 class _BuilderViewState extends State<BuilderView> {
-
   ChallengeWidget selectedWidget;
 
   Widget slider(BuildContext context) {
@@ -47,8 +46,26 @@ class _BuilderViewState extends State<BuilderView> {
     });
   }
 
-  void doRemove(ChallengeWidget select) {
-    // TODO remove
+  void doRemove(ChallengeWidget removed) {
+    ChallengeWidget current = widget.currentWidget;
+    if (current == removed) {
+      current = null;
+    } else {
+      _clearOf(current, removed);
+    }
+    doSelect(null);
+    widget.updateCallback(current);
+  }
+
+  void _clearOf(ChallengeWidget current, ChallengeWidget removed) {
+    if (current.hasSingleChild) {
+      ChallengeWidget widget = current.childProperty?.getAsChallengeWidget();
+      if (widget == removed) {
+        current.setPropertyValue('child', null);
+      } else if (widget != null) {
+        _clearOf(widget, removed);
+      }
+    }
   }
 
   void doEdit(ChallengeWidget widget) {
@@ -66,7 +83,9 @@ class _BuilderViewState extends State<BuilderView> {
   }
 
   Widget _content() {
-    return widget.currentWidget?.toBuilderWidget(selectedWidget, doSelect, doEdit, doRemove) ?? EmptyState();
+    return widget.currentWidget
+            ?.toBuilderWidget(selectedWidget, doSelect, doEdit, doRemove) ??
+        EmptyState();
   }
 
   @override

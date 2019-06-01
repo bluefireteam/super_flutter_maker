@@ -64,6 +64,8 @@ abstract class ChallengeWidget {
 
   bool get hasMultipleChildren => false;
 
+  ChallengeWidgetProperty get childProperty => properties.values.firstWhere((c) => c.type == PropertyType.WIDGET);
+
   Widget _content(
     ChallengeWidget currentSelected,
     void Function(ChallengeWidget) doSelect,
@@ -71,8 +73,7 @@ abstract class ChallengeWidget {
     void Function(ChallengeWidget) doRemove,
   ) {
     if (hasSingleChild) {
-      final widget = properties.values.firstWhere((c) => c.type == PropertyType.WIDGET);
-      return widget?.getAsChallengeWidget()?.toBuilderWidget(currentSelected, doSelect, doEdit, doRemove) ?? Container();
+      return childProperty?.getAsChallengeWidget()?.toBuilderWidget(currentSelected, doSelect, doEdit, doRemove) ?? Container();
     } else if (hasMultipleChildren) {
       throw 'not impl';
     } else {
