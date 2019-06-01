@@ -6,7 +6,14 @@ class ListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('list'),
+      child: Column(
+        children: <Widget>[
+          Text('list'),
+          RaisedButton(
+            child: Text('ir para o jogo'),
+            onPressed: () => Navigator.of(context).pushNamed('/game')),
+        ],
+      ),
     );
   }
 }
