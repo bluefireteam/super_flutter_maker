@@ -47,12 +47,22 @@ class _BuilderViewState extends State<BuilderView> {
     });
   }
 
-  void doEdit(ChallengeWidget select) {
-    // TODO edit
-  }
-
   void doRemove(ChallengeWidget select) {
     // TODO remove
+  }
+
+  void doEdit(ChallengeWidget widget) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Properties'),
+              content: Column(children: [
+                Text('Bla')
+              ])
+          );
+        }
+    );
   }
 
   Widget _content() {
