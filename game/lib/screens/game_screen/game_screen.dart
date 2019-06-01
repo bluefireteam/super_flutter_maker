@@ -31,7 +31,7 @@ class _GameScreenState extends State<GameScreen> {
 
   _GameScreenState(String id) {
     challenge = ChallengeRepository().getChallenge(id);
-    currentWidget = challenge.child;
+    currentWidget = null;
   }
 
   updateWidgetTree(ChallengeWidget newWidgetTree) {

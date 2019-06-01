@@ -64,10 +64,10 @@ abstract class ChallengeWidget {
 
   bool get hasMultipleChildren => false;
 
-  Widget _content() {
+  Widget _content(ChallengeWidget currentSelected, void Function(ChallengeWidget) doSelect) {
     if (hasSingleChild) {
       final widget = properties.values.firstWhere((c) => c.type == PropertyType.WIDGET);
-      return widget?.getAsChallengeWidget()?.toBuilderWidget() ?? Container();
+      return widget?.getAsChallengeWidget()?.toBuilderWidget(currentSelected, doSelect) ?? Container();
     } else if (hasMultipleChildren) {
       throw 'not impl';
     } else {
@@ -75,16 +75,20 @@ abstract class ChallengeWidget {
     }
   }
 
-  Widget toBuilderWidget() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-      ),
-      child: Column(
-        children: [
-          Text(name()),
-          pad(_content()),
-        ],
+  Widget toBuilderWidget(ChallengeWidget currentSelected, void Function(ChallengeWidget) doSelect) {
+    bool isMe = currentSelected == this;
+    return GestureDetector(
+      onTap: () => doSelect(this),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: isMe ? Colors.green : Colors.black),
+        ),
+        child: Column(
+          children: [
+            Text(name()),
+            pad(_content(currentSelected, doSelect)),
+          ],
+        ),
       ),
     );
   }

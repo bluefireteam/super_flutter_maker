@@ -4,11 +4,19 @@ import '../../models/challenge_widget.dart';
 import '../../util.dart';
 import './empty_state.dart';
 
-class BuilderView extends StatelessWidget {
+class BuilderView extends StatefulWidget {
   final ChallengeWidget currentWidget;
   final void Function(ChallengeWidget) updateCallback;
 
   BuilderView(this.currentWidget, this.updateCallback);
+
+  @override
+  _BuilderViewState createState() => _BuilderViewState();
+}
+
+class _BuilderViewState extends State<BuilderView> {
+
+  ChallengeWidget selectedWidget;
 
   Widget slider(BuildContext context) {
     return Container(
@@ -24,14 +32,20 @@ class BuilderView extends StatelessWidget {
     );
   }
 
-  void addWidget(ChallengeWidget widget) {
-    if (currentWidget == null) {
-      updateCallback(widget);
+  void addWidget(ChallengeWidget w) {
+    if (widget.currentWidget == null) {
+      widget.updateCallback(w);
     }
   }
 
+  void doSelect(ChallengeWidget select) {
+    setState(() {
+      selectedWidget = select;
+    });
+  }
+
   Widget _content() {
-    return currentWidget?.toBuilderWidget() ?? EmptyState();
+    return widget.currentWidget?.toBuilderWidget(selectedWidget, doSelect) ?? EmptyState();
   }
 
   @override
