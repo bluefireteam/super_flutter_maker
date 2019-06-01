@@ -37,6 +37,11 @@ class _BuilderViewState extends State<BuilderView> {
     } else if (selectedWidget != null && selectedWidget.hasSingleChild) {
       selectedWidget.setPropertyValue('child', w);
       widget.updateCallback(widget.currentWidget);
+    } else if (selectedWidget != null && selectedWidget.hasMultipleChildren) {
+      final currentChildren = selectedWidget.getProperty('children').getAsChallengeWidgetList() ?? [];
+
+      selectedWidget.setPropertyValue('children', [...currentChildren, w]);
+      widget.updateCallback(widget.currentWidget);
     }
   }
 

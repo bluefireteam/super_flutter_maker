@@ -7,10 +7,12 @@ import '../screens/game_screen/challenge_widget_widget.dart';
 import '../util.dart';
 import 'widgets/center.dart';
 import 'widgets/text.dart';
+import 'widgets/column.dart';
 
 enum PropertyType {
   STRING,
-  WIDGET
+  WIDGET,
+  WIDGET_LIST,
 }
 
 class ChallengeWidgetProperty {
@@ -35,9 +37,25 @@ class ChallengeWidgetProperty {
     return null;
   }
 
+  List<ChallengeWidget> getAsChallengeWidgetList() {
+    if (type == PropertyType.WIDGET_LIST) {
+      return value as List<ChallengeWidget>;
+    }
+
+    return null;
+  }
+
   Widget getAsWidget() {
     if (type == PropertyType.WIDGET) {
       return (value as ChallengeWidget)?.toWidget();
+    }
+
+    return null;
+  }
+
+  List<Widget> getAsWidgetList() {
+    if (type == PropertyType.WIDGET_LIST) {
+      return (value as List<ChallengeWidget>)?.map((w) => w.toWidget()).toList();
     }
 
     return null;
@@ -69,14 +87,14 @@ abstract class ChallengeWidget {
   }
 
   static List<ChallengeWidgetWidget> all(void Function(ChallengeWidget) onClick) {
-    return [CenterWidget.toIcon(onClick), TextWidget.toIcon(onClick), RaisedButtonWidget.toIcon(onClick)];
+    return [CenterWidget.toIcon(onClick), TextWidget.toIcon(onClick), ColumnWidget.toIcon(onClick), RaisedButtonWidget.toIcon(onClick)];
   }
 
   bool get hasSingleChild => properties.values.any((c) => c.type == PropertyType.WIDGET);
-
-  bool get hasMultipleChildren => false;
+  bool get hasMultipleChildren => properties.values.any((c) => c.type == PropertyType.WIDGET_LIST);
 
   ChallengeWidgetProperty get childProperty => properties.values.firstWhere((c) => c.type == PropertyType.WIDGET);
+  ChallengeWidgetProperty get childrenProperty => properties.values.firstWhere((c) => c.type == PropertyType.WIDGET_LIST);
 
   Widget _content(
     ChallengeWidget currentSelected,
@@ -87,7 +105,11 @@ abstract class ChallengeWidget {
     if (hasSingleChild) {
       return childProperty?.getAsChallengeWidget()?.toBuilderWidget(currentSelected, doSelect, doEdit, doRemove) ?? Container();
     } else if (hasMultipleChildren) {
-      throw 'not impl';
+      return Column(children: childrenProperty
+          ?.getAsChallengeWidgetList()
+          ?.map((w) => w?.toBuilderWidget(currentSelected, doSelect, doEdit, doRemove) ?? Container())
+          ?.toList() ?? []
+      );
     } else {
       return Container();
     }
