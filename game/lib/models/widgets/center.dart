@@ -5,11 +5,11 @@ import '../challenge_widget.dart';
 class CenterWidget extends ChallengeWidget {
 
   CenterWidget() {
-    properties["child"] = ChallengeWidgetProperty(PropertyType.WIDGET);
+    properties['child'] = ChallengeWidgetProperty(PropertyType.WIDGET);
   }
 
   Widget toWidget() {
-    return Center(child: getProperty("child").getAsWidget());
+    return Center(child: getProperty('child').getAsWidget());
   }
 }
 

@@ -8,13 +8,13 @@ class ChallengeRepository {
 
   ChallengeRepository() {
     Challenge helloWorldChallenge = Challenge();
-    helloWorldChallenge.title = "Welcome to Flutter";
+    helloWorldChallenge.title = 'Welcome to Flutter';
     helloWorldChallenge.difficultyLevel = 1;
 
 
     helloWorldChallenge.child =
       CenterWidget()
-        ..setPropertyValue("child", TextWidget()..setPropertyValue("text", "Hello World"));
+        ..setPropertyValue('child', TextWidget()..setPropertyValue('text', 'Hello World'));
 
     List<Challenge> _challenges = [helloWorldChallenge];
   }
