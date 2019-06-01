@@ -20,7 +20,7 @@ class GameScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                    decoration: BoxDecoration(color: Colors.red),
+                    decoration: BoxDecoration(color: Colors.pink),
                     width: 100,
                     height: 100),
                 Container(
@@ -28,7 +28,7 @@ class GameScreen extends StatelessWidget {
                     width: 100,
                     height: 100),
                 Container(
-                    decoration: BoxDecoration(color: Colors.red),
+                    decoration: BoxDecoration(color: Colors.blue),
                     width: 100,
                     height: 100),
               ],
