@@ -38,16 +38,21 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
+  doVerify() {
+    // TODO verify
+    print('verify');
+  }
+
   Widget slider(BuildContext context) {
     return Swiper(
       itemBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            return PreviewView(challenge.child);
+            return PreviewView(challenge.child, null);
           case 1:
             return BuilderView(currentWidget, updateWidgetTree);
           case 2:
-            return PreviewView(currentWidget);
+            return PreviewView(currentWidget, doVerify);
           default:
             return Text('Loading...');
         }
