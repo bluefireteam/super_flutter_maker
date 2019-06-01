@@ -21,3 +21,6 @@ flutter:
   assets:
     - assets/images/widgets/text.png
     - assets/images/widgets/center.png
+    - assets/images/icons/dash-baby.png
+    - assets/images/icons/dash.png
+    - assets/images/icons/dash-expert.png
