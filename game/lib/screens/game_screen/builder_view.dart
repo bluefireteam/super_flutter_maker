@@ -47,8 +47,16 @@ class _BuilderViewState extends State<BuilderView> {
     });
   }
 
+  void doEdit(ChallengeWidget select) {
+    // TODO edit
+  }
+
+  void doRemove(ChallengeWidget select) {
+    // TODO remove
+  }
+
   Widget _content() {
-    return widget.currentWidget?.toBuilderWidget(selectedWidget, doSelect) ?? EmptyState();
+    return widget.currentWidget?.toBuilderWidget(selectedWidget, doSelect, doEdit, doRemove) ?? EmptyState();
   }
 
   @override

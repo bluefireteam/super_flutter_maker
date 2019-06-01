@@ -64,10 +64,15 @@ abstract class ChallengeWidget {
 
   bool get hasMultipleChildren => false;
 
-  Widget _content(ChallengeWidget currentSelected, void Function(ChallengeWidget) doSelect) {
+  Widget _content(
+    ChallengeWidget currentSelected,
+    void Function(ChallengeWidget) doSelect,
+    void Function(ChallengeWidget) doEdit,
+    void Function(ChallengeWidget) doRemove,
+  ) {
     if (hasSingleChild) {
       final widget = properties.values.firstWhere((c) => c.type == PropertyType.WIDGET);
-      return widget?.getAsChallengeWidget()?.toBuilderWidget(currentSelected, doSelect) ?? Container();
+      return widget?.getAsChallengeWidget()?.toBuilderWidget(currentSelected, doSelect, doEdit, doRemove) ?? Container();
     } else if (hasMultipleChildren) {
       throw 'not impl';
     } else {
@@ -75,7 +80,12 @@ abstract class ChallengeWidget {
     }
   }
 
-  Widget toBuilderWidget(ChallengeWidget currentSelected, void Function(ChallengeWidget) doSelect) {
+  Widget toBuilderWidget(
+    ChallengeWidget currentSelected,
+    void Function(ChallengeWidget) doSelect,
+    void Function(ChallengeWidget) doEdit,
+    void Function(ChallengeWidget) doRemove,
+  ) {
     bool isMe = currentSelected == this;
     Color color = isMe ? Colors.white : Colors.black;
     return GestureDetector(
@@ -91,8 +101,14 @@ abstract class ChallengeWidget {
               children: [
                 pad(Text(name(), style: TextStyle(color: color))),
                 if (isMe) Row(children: [
-                  pad(Icon(Icons.edit, color: Colors.white), p: 4.0),
-                  pad(Icon(Icons.delete, color: Colors.white), p: 4.0),
+                  pad(GestureDetector(
+                    child: Icon(Icons.edit, color: Colors.white),
+                    onTap: () => doEdit(this),
+                  ), p: 4.0),
+                  pad(GestureDetector(
+                    child: Icon(Icons.delete, color: Colors.white),
+                    onTap: () => doRemove(this),
+                  ), p: 4.0),
                 ]),
               ],
             ),
@@ -102,7 +118,7 @@ abstract class ChallengeWidget {
                 .map((entry) {
                   return Text('${entry.key} - ${entry.value?.getAsString()}', style: TextStyle(color: color));
                 }).cast().toList(),
-            pad(_content(currentSelected, doSelect)),
+            pad(_content(currentSelected, doSelect, doEdit, doRemove)),
           ],
         ),
       ),
