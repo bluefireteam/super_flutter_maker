@@ -3,7 +3,7 @@ import 'package:flame/flame.dart';
 import 'screens/game_screen/game_screen.dart';
 import 'screens/list_screen/list_screen.dart';
 
-Widget Function(Widget) s = (Widget t) => Scaffold(body: SafeArea(child: t));
+Widget Function(Widget) s = (Widget t) => Scaffold(body: t);
 
 main() {
   Flame.audio.disableLog();

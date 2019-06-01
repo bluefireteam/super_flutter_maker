@@ -7,11 +7,14 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(
-        children: ChallengeRepository().allChallenges().map((challenge) {
-          return ChallengeListElement(challenge: challenge);
-        }).toList(),
+    return Scaffold(
+      appBar: AppBar(title: Text('Challenges')),
+      body: Container(
+        child: ListView(
+          children: ChallengeRepository().allChallenges().map((challenge) {
+            return ChallengeListElement(challenge: challenge);
+          }).toList(),
+        ),
       ),
     );
   }
@@ -27,10 +30,14 @@ class ChallengeListElement extends StatelessWidget {
 
   String difficultyImagePath() {
     switch (this.challenge.difficultyLevel) {
-      case 1: return 'assets/images/icons/dash-baby.png';
-      case 2: return 'assets/images/icons/dash.png';
-      case 3: return 'assets/images/icons/dash-expert.png';
-      default: return '';
+      case 1:
+        return 'assets/images/icons/dash-baby.png';
+      case 2:
+        return 'assets/images/icons/dash.png';
+      case 3:
+        return 'assets/images/icons/dash-expert.png';
+      default:
+        return '';
     }
   }
 
