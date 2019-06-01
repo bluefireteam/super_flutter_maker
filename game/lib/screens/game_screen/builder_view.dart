@@ -74,9 +74,25 @@ class _BuilderViewState extends State<BuilderView> {
         builder: (BuildContext context) {
           return AlertDialog(
               title: Text('Properties'),
-              content: Column(children: [
-                Text('Bla')
-              ])
+              content: Column(
+                  children: widget.listEditableProperties()
+                    .map((entry) {
+                      return TextField(
+                          decoration: InputDecoration(labelText: entry.key),
+                          onChanged: (value) {
+                            widget.setPropertyValue(entry.key, value);
+                          }
+                      );
+                    }).toList()
+              ),
+              actions: [
+                FlatButton(
+                    child: Text('Ok'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    }
+                )
+              ]
           );
         }
     );

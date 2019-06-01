@@ -56,6 +56,10 @@ abstract class ChallengeWidget {
     return properties[name];
   }
 
+  List<MapEntry<String, ChallengeWidgetProperty>> listEditableProperties() {
+    return properties.entries.where((entry) => entry.value.type == PropertyType.STRING).toList();
+  }
+
   static List<ChallengeWidgetWidget> all(void Function(ChallengeWidget) onClick) {
     return [CenterWidget.toIcon(onClick), TextWidget.toIcon(onClick)];
   }
