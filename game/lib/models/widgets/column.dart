@@ -19,7 +19,7 @@ class ColumnWidget extends ChallengeWidget {
 
   static ChallengeWidgetWidget toIcon(void Function(ChallengeWidget) onClick) {
     return ChallengeWidgetWidget(
-      icon: Image.asset('assets/images/widgets/center.png'),
+      icon: Image.asset('assets/images/widgets/column.png'),
       text: 'Column',
       creator: () => ColumnWidget(),
       onClick: onClick,
