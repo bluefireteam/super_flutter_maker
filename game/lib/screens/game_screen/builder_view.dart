@@ -35,6 +35,9 @@ class _BuilderViewState extends State<BuilderView> {
   void addWidget(ChallengeWidget w) {
     if (widget.currentWidget == null) {
       widget.updateCallback(w);
+    } else if (selectedWidget != null) {
+      selectedWidget.setPropertyValue('child', w);
+      widget.updateCallback(selectedWidget);
     }
   }
 

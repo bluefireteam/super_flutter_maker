@@ -13,7 +13,8 @@ class TextWidget extends ChallengeWidget {
   }
 
   Widget toWidget() {
-    return Text(getProperty('text').getAsString());
+    String str = getProperty('text')?.getAsString() ?? '<no_text>';
+    return Text(str);
   }
 
   static ChallengeWidgetWidget toIcon(void Function(ChallengeWidget) onClick) {
