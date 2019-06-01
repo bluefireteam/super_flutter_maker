@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
-import 'screens/game_screen.dart';
-import 'screens/list_screen.dart';
+import 'screens/game_screen/game_screen.dart';
+import 'screens/list_screen/list_screen.dart';
 
 Widget Function(Widget) s = (Widget t) => Scaffold(body: SafeArea(child: t));
 

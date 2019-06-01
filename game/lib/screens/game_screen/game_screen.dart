@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../util.dart';
+import '../../util.dart';
+import 'game_widget_widget.dart';
+
 
 class GameScreen extends StatelessWidget {
   const GameScreen({Key key}) : super(key: key);
@@ -19,18 +21,9 @@ class GameScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                    decoration: BoxDecoration(color: Colors.pink),
-                    width: 100,
-                    height: 100),
-                Container(
-                    decoration: BoxDecoration(color: Colors.red),
-                    width: 100,
-                    height: 100),
-                Container(
-                    decoration: BoxDecoration(color: Colors.blue),
-                    width: 100,
-                    height: 100),
+                GameWidgetWidget(),
+                GameWidgetWidget(),
+                GameWidgetWidget(),
               ],
             ),
           ),
