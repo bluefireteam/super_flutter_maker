@@ -87,6 +87,12 @@ abstract class ChallengeWidget {
         child: Column(
           children: [
             Text(name(), style: TextStyle(color: color)),
+            ...properties
+                .entries
+                .where((entry) => entry.value.type == PropertyType.STRING)
+                .map((entry) {
+                  return Text('${entry.key} - ${entry.value?.getAsString()}', style: TextStyle(color: color));
+                }).cast().toList(),
             pad(_content(currentSelected, doSelect)),
           ],
         ),
