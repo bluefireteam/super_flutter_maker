@@ -70,6 +70,11 @@ class _BuilderViewState extends State<BuilderView> {
       } else if (widget != null) {
         _clearOf(widget, removed);
       }
+    } else if (current.hasMultipleChildren) {
+      List<ChallengeWidget> children = current.childrenProperty?.getAsChallengeWidgetList();
+
+      final newChildren = children.where((w) => w != removed);
+      current.setPropertyValue('children', newChildren.toList());
     }
   }
 
