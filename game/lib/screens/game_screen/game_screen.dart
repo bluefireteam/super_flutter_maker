@@ -79,7 +79,7 @@ class _GameScreenState extends State<GameScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               FlatButton(
-                child: Text('Target', style: buttonsStyle),
+                child: Text('Goal', style: buttonsStyle),
                 onPressed: () => swiperController.move(0),
               ),
               FlatButton(
