@@ -38,9 +38,15 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
+  _snack(String msg) {
+    Scaffold.of(context).showSnackBar(new SnackBar(
+      content: new Text(msg),
+    ));
+  }
+
   doVerify() {
-    // TODO verify
-    print('verify');
+    bool isEqual = currentWidget != null && challenge.child.toJson() == currentWidget.toJson();
+    _snack(isEqual ? 'Ganhou!' : 'Perdeu, otário');
   }
 
   Widget slider(BuildContext context) {

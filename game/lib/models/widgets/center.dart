@@ -25,5 +25,13 @@ class CenterWidget extends ChallengeWidget {
       onClick: onClick,
     );
   }
+
+  @override
+  Map<String, dynamic> toMap() {
+    return {
+      'class': name(),
+      'child': getProperty('child')?.getAsChallengeWidget()?.toMap(),
+    };
+  }
 }
 

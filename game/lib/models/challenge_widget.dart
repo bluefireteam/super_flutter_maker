@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../screens/game_screen/challenge_widget_widget.dart';
@@ -43,8 +45,13 @@ class ChallengeWidgetProperty {
 
 abstract class ChallengeWidget {
   String name();
+  Map<String, dynamic> toMap();
   Widget toWidget();
   Map<String, ChallengeWidgetProperty> properties = {};
+
+  String toJson() {
+    return json.encode(toMap());
+  }
 
   void setPropertyValue(String name, Object value) {
     ChallengeWidgetProperty prop = properties[name];

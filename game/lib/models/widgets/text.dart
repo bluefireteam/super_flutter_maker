@@ -25,5 +25,13 @@ class TextWidget extends ChallengeWidget {
       onClick: onClick,
     );
   }
+
+  @override
+  Map<String, dynamic> toMap() {
+    return {
+      'class': name(),
+      'text': getProperty('text')?.getAsString(),
+    };
+  }
 }
 
