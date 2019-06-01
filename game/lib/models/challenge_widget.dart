@@ -34,7 +34,7 @@ class ChallengeWidgetProperty {
 
   Widget getAsWidget() {
     if (type == PropertyType.WIDGET) {
-      return (value as ChallengeWidget).toWidget();
+      return (value as ChallengeWidget)?.toWidget();
     }
 
     return null;
@@ -80,10 +80,12 @@ abstract class ChallengeWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
       ),
-      child: Column(children: [
-        Text(name()),
-        pad(_content()),
-      ]),
+      child: Column(
+        children: [
+          Text(name()),
+          pad(_content()),
+        ],
+      ),
     );
   }
 }

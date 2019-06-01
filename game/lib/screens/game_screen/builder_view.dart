@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/challenge_widget.dart';
 import '../../util.dart';
+import './empty_state.dart';
 
 class BuilderView extends StatelessWidget {
   final ChallengeWidget currentWidget;
@@ -29,12 +30,8 @@ class BuilderView extends StatelessWidget {
     }
   }
 
-  Widget _emptySate() {
-    return Text('Choose a widget to start with...');
-  }
-
   Widget _content() {
-    return currentWidget?.toBuilderWidget() ?? _emptySate();
+    return currentWidget?.toBuilderWidget() ?? EmptyState();
   }
 
   @override

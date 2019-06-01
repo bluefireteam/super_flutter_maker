@@ -13,7 +13,8 @@ class CenterWidget extends ChallengeWidget {
   }
 
   Widget toWidget() {
-    return Center(child: getProperty('child').getAsWidget());
+    final child = getProperty('child')?.getAsWidget();
+    return child == null ? Container() : Center(child: child);
   }
 
   static ChallengeWidgetWidget toIcon(void Function(ChallengeWidget) onClick) {
