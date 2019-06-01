@@ -77,15 +77,16 @@ abstract class ChallengeWidget {
 
   Widget toBuilderWidget(ChallengeWidget currentSelected, void Function(ChallengeWidget) doSelect) {
     bool isMe = currentSelected == this;
+    Color color = isMe ? Colors.white : Colors.black;
     return GestureDetector(
       onTap: () => doSelect(this),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: isMe ? Colors.green : Colors.black),
+          border: Border.all(color: color),
         ),
         child: Column(
           children: [
-            Text(name()),
+            Text(name(), style: TextStyle(color: color)),
             pad(_content(currentSelected, doSelect)),
           ],
         ),
