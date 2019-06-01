@@ -64,42 +64,46 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(color: Colors.cyan),
-          child: slider(context),
-          padding: EdgeInsets.only(top: 64.0),
+    return Container(
+      decoration: BoxDecoration(color: Colors.cyan),
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              child: slider(context),
+              padding: EdgeInsets.only(top: 64.0),
+            ),
+            Positioned(
+              top: 8.0,
+              left: 0.0,
+              right: 0.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  FlatButton(
+                    child: Text('Back', style: buttonsStyle),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  FlatButton(
+                    child: Text('Goal', style: buttonsStyle),
+                    onPressed: () => swiperController.move(0),
+                  ),
+                  FlatButton(
+                    child: Text('Builder', style: buttonsStyle),
+                    onPressed: () => swiperController.move(1),
+                  ),
+                  FlatButton(
+                    child: Text('Preview', style: buttonsStyle),
+                    onPressed: () => swiperController.move(2),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
-        Positioned(
-          top: 8.0,
-          left: 0.0,
-          right: 0.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              FlatButton(
-                child: Text('Back', style: buttonsStyle),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              FlatButton(
-                child: Text('Goal', style: buttonsStyle),
-                onPressed: () => swiperController.move(0),
-              ),
-              FlatButton(
-                child: Text('Builder', style: buttonsStyle),
-                onPressed: () => swiperController.move(1),
-              ),
-              FlatButton(
-                child: Text('Preview', style: buttonsStyle),
-                onPressed: () => swiperController.move(2),
-              ),
-            ],
-          ),
-        )
-      ],
+      ),
     );
   }
 }
