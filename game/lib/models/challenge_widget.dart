@@ -121,7 +121,7 @@ abstract class ChallengeWidget {
                 .entries
                 .where((entry) => entry.value.type == PropertyType.STRING)
                 .map((entry) {
-                  return Text('${entry.key} - ${entry.value?.getAsString()}', style: TextStyle(color: color));
+                  return Text('${entry.key} - ${entry.value?.getAsString() ?? '(empty)'}', style: TextStyle(color: color));
                 }).cast().toList(),
             pad(_content(currentSelected, doSelect, doEdit, doRemove)),
           ],
