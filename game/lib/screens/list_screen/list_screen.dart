@@ -61,8 +61,7 @@ class ChallengeListElement extends StatelessWidget {
             Icon(Icons.arrow_forward_ios)
           ])),
       onTap: () {
-        // Navigator.of(context).pushNamed('/game/' + challenge.id);
-        Navigator.of(context).pushNamed('/game');
+        Navigator.of(context).pushNamed('/game/' + challenge.id);
       },
     );
   }

@@ -10,6 +10,7 @@ dependencies:
     sdk: flutter
   flame: 0.12.0
   flutter_swiper: 1.1.6
+  fluro: "^1.4.0"
 
 dev_dependencies:
   flutter_test:

@@ -12,10 +12,15 @@ const SLIDER_COUNT = 3;
 const TextStyle buttonsStyle = TextStyle(color: Colors.white, fontSize: 20);
 
 class GameScreen extends StatefulWidget {
-  const GameScreen({Key key}) : super(key: key);
+  const GameScreen({
+    Key key,
+    this.id
+  }) : super(key: key);
+
+  final String id;
 
   @override
-  _GameScreenState createState() => _GameScreenState();
+  _GameScreenState createState() => _GameScreenState(this.id);
 }
 
 class _GameScreenState extends State<GameScreen> {
@@ -24,8 +29,9 @@ class _GameScreenState extends State<GameScreen> {
   Challenge challenge;
   ChallengeWidget currentWidget;
 
-  _GameScreenState() {
-    challenge = ChallengeRepository().allChallenges().first;
+  _GameScreenState(String id) {
+    challenge = ChallengeRepository().getChallenge(id);
+    currentWidget = challenge.child;
   }
 
   updateWidgetTree(ChallengeWidget newWidgetTree) {
