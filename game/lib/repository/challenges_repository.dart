@@ -16,7 +16,7 @@ class ChallengeRepository {
       CenterWidget()
         ..setPropertyValue('child', TextWidget()..setPropertyValue('text', 'Hello World'));
 
-    List<Challenge> _challenges = [helloWorldChallenge];
+    _challenges = [helloWorldChallenge];
   }
 
   List<Challenge> allChallenges() {

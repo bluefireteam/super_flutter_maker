@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:super_flutter_maker/models/challenge.dart';
 
+import '../../models/challenge_widget.dart';
+import '../../repository/challenges_repository.dart';
 import 'builder_view.dart';
 import 'preview_view.dart';
-import 'target_view.dart';
 
 const SLIDER_COUNT = 3;
 
@@ -19,13 +21,21 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   final SwiperController swiperController = SwiperController();
 
+  Challenge challenge;
+  ChallengeWidget currentWidget;
+
+  _GameScreenState() {
+    challenge = ChallengeRepository().allChallenges().first;
+    currentWidget = challenge.child;
+  }
+
   Widget slider(BuildContext context) {
     return Swiper(
       itemBuilder: (BuildContext context, int index) {
         switch (index) {
-          case 0: return TargetView();
-          case 1: return BuilderView();
-          case 2: return PreviewView();
+          case 0: return PreviewView(challenge.child);
+          case 1: return BuilderView(currentWidget);
+          case 2: return PreviewView(currentWidget);
           default: return Text('Loading...');
         }
       },
