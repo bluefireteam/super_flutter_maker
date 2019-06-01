@@ -13,13 +13,13 @@ class ChallengeRepository {
     helloWorldChallenge.difficultyLevel = 1;
 
     Challenge helloWorldChallenge2 = Challenge();
-    helloWorldChallenge2.id = "1";
-    helloWorldChallenge2.title = "Welcome to Flutter";
+    helloWorldChallenge2.id = "2";
+    helloWorldChallenge2.title = "Intermediate Challenge";
     helloWorldChallenge2.difficultyLevel = 2;
 
     Challenge helloWorldChallenge3 = Challenge();
-    helloWorldChallenge3.id = "1";
-    helloWorldChallenge3.title = "Welcome to Flutter";
+    helloWorldChallenge3.id = "3";
+    helloWorldChallenge3.title = "Expert Challenge";
     helloWorldChallenge3.difficultyLevel = 3;
 
     helloWorldChallenge.child = helloWorldChallenge2.child = helloWorldChallenge3.child =

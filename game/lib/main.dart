@@ -11,12 +11,12 @@ Widget Function(Widget) s = (Widget t) => Scaffold(body: t);
 main() {
   final router = Router();
   final gameHandler = Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-    return GameScreen(id: params["id"][0]);
+    return s(GameScreen(id: params["id"][0]));
   });
   router.define('/game/:id', handler: gameHandler);
 
   final listHandler = Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-    return ListScreen();
+    return s(ListScreen());
   });
   router.define('/', handler: listHandler);
 
