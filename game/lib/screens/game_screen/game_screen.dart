@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../util.dart';
-import 'game_widget_widget.dart';
+import '../../models/challenge_widget.dart';
 
 const List<String> COMPONENTS = [
   'Text',
@@ -20,7 +19,7 @@ class GameScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           Container(width: 8.0),
-          ...COMPONENTS.map((t) => GameWidgetWidget(text: t)).toList(),
+          ...ChallengeWidget.all(),
           Container(width: 8.0),
         ], 
       ),

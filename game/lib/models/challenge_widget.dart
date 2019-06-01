@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../screens/game_screen/challenge_widget_widget.dart';
+import 'widgets/center.dart';
+import 'widgets/text.dart';
+
 enum PropertyType {
   STRING,
   WIDGET
@@ -41,5 +45,9 @@ abstract class ChallengeWidget {
 
   ChallengeWidgetProperty getProperty(String name) {
     return properties[name];
+  }
+
+  static List<ChallengeWidgetWidget> all() {
+    return [CenterWidget.toIcon(), TextWidget.toIcon()];
   }
 }

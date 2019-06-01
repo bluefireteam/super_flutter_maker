@@ -16,3 +16,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/widgets/text.png
+    - assets/images/widgets/center.png
