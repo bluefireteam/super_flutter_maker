@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../util.dart';
-
 const WIDGET_BOX_SIZE = 100.0;
 
 class GameWidgetWidget extends StatelessWidget {
