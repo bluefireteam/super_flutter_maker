@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import '../../screens/game_screen/challenge_widget_widget.dart';
 import '../challenge_widget.dart';
 
-class ColumnWidget extends ChallengeWidget {
+class RowWidget extends ChallengeWidget {
 
   @override
-  String name() => 'Column';
+  String name() => 'Row';
 
-  ColumnWidget() {
+  RowWidget() {
     properties['children'] = ChallengeWidgetProperty(PropertyType.WIDGET_LIST);
   }
 
   Widget toWidget() {
     final children = getProperty('children')?.getAsWidgetList();
-    return children == null ? Container() : Column(children: children);
+    return children == null ? Container() : Row(children: children);
   }
 
   static ChallengeWidgetWidget toIcon(void Function(ChallengeWidget) onClick) {
     return ChallengeWidgetWidget(
-      icon: Image.asset('assets/images/widgets/column.png'),
-      text: 'Column',
-      creator: () => ColumnWidget(),
+      icon: Image.asset('assets/images/widgets/row.png'),
+      text: 'Row',
+      creator: () => RowWidget(),
       onClick: onClick,
     );
   }

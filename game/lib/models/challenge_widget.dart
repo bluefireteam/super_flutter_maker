@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:super_flutter_maker/models/widgets/raised_button.dart';
 
 import '../screens/game_screen/challenge_widget_widget.dart';
 import '../util.dart';
 import 'widgets/center.dart';
-import 'widgets/text.dart';
 import 'widgets/column.dart';
+import 'widgets/raised_button.dart';
+import 'widgets/row.dart';
+import 'widgets/text.dart';
 
 enum PropertyType {
   STRING,
@@ -87,7 +88,13 @@ abstract class ChallengeWidget {
   }
 
   static List<ChallengeWidgetWidget> all(void Function(ChallengeWidget) onClick) {
-    return [CenterWidget.toIcon(onClick), TextWidget.toIcon(onClick), ColumnWidget.toIcon(onClick), RaisedButtonWidget.toIcon(onClick)];
+    return [
+      CenterWidget.toIcon(onClick),
+      TextWidget.toIcon(onClick),
+      ColumnWidget.toIcon(onClick),
+      RowWidget.toIcon(onClick),
+      RaisedButtonWidget.toIcon(onClick),
+    ];
   }
 
   bool get hasSingleChild => properties.values.any((c) => c.type == PropertyType.WIDGET);

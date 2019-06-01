@@ -22,6 +22,7 @@ flutter:
   assets:
     - assets/images/widgets/text.png
     - assets/images/widgets/center.png
+    - assets/images/widgets/row.png
     - assets/images/widgets/column.png
     - assets/images/widgets/raised_button.png
     - assets/images/icons/dash-baby.png
