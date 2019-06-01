@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/challenge_widget.dart';
-
-const List<String> COMPONENTS = [
-  'Text',
-  'Center',
-  'Row',
-  'Column',
-];
+import 'game_view.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({Key key}) : super(key: key);
@@ -21,7 +15,7 @@ class GameScreen extends StatelessWidget {
           Container(width: 8.0),
           ...ChallengeWidget.all(),
           Container(width: 8.0),
-        ], 
+        ],
       ),
     );
   }
@@ -31,9 +25,7 @@ class GameScreen extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: Container(
-            decoration: BoxDecoration(color: Colors.cyan),
-          ),
+          child: GameView(),
         ),
         slider(context),
       ],
