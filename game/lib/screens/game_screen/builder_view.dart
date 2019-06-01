@@ -28,6 +28,7 @@ class BuilderView extends StatelessWidget {
         Expanded(
           child: Container(
             color: Colors.cyan,
+            child: currentWidget.toBuilderWidget(),
           ),
         ),
         slider(context),

@@ -5,6 +5,9 @@ import '../challenge_widget.dart';
 
 class TextWidget extends ChallengeWidget {
 
+  @override
+  String name() => 'Text';
+
   TextWidget() {
     properties['text'] = ChallengeWidgetProperty(PropertyType.STRING);
   }

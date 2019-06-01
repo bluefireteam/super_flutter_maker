@@ -5,6 +5,9 @@ import '../challenge_widget.dart';
 
 class CenterWidget extends ChallengeWidget {
 
+  @override
+  String name() => 'Center';
+
   CenterWidget() {
     properties['child'] = ChallengeWidgetProperty(PropertyType.WIDGET);
   }

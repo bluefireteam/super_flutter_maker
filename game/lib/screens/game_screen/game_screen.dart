@@ -33,10 +33,14 @@ class _GameScreenState extends State<GameScreen> {
     return Swiper(
       itemBuilder: (BuildContext context, int index) {
         switch (index) {
-          case 0: return PreviewView(challenge.child);
-          case 1: return BuilderView(currentWidget);
-          case 2: return PreviewView(currentWidget);
-          default: return Text('Loading...');
+          case 0:
+            return PreviewView(challenge.child);
+          case 1:
+            return BuilderView(currentWidget);
+          case 2:
+            return PreviewView(currentWidget);
+          default:
+            return Text('Loading...');
         }
       },
       itemCount: SLIDER_COUNT,
@@ -51,31 +55,33 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        slider(context),
+        Container(
+          decoration: BoxDecoration(color: Colors.cyan),
+          child: slider(context),
+          padding: EdgeInsets.only(top: 64.0),
+        ),
         Positioned(
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                FlatButton(
-                  child: Text('Target', style: buttonsStyle),
-                  onPressed: () => swiperController.move(0),
-                ),
-                FlatButton(
-                  child: Text('Builder', style: buttonsStyle),
-                  onPressed: () => swiperController.move(1),
-                ),
-                FlatButton(
-                  child: Text('Preview', style: buttonsStyle),
-                  onPressed: () => swiperController.move(2),
-                ),
-              ],
-            ),
-          ),
-          top: 16.0,
+          top: 8.0,
           left: 0.0,
           right: 0.0,
-        ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              FlatButton(
+                child: Text('Target', style: buttonsStyle),
+                onPressed: () => swiperController.move(0),
+              ),
+              FlatButton(
+                child: Text('Builder', style: buttonsStyle),
+                onPressed: () => swiperController.move(1),
+              ),
+              FlatButton(
+                child: Text('Preview', style: buttonsStyle),
+                onPressed: () => swiperController.move(2),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

@@ -23,6 +23,14 @@ class ChallengeWidgetProperty {
     return null;
   }
 
+  ChallengeWidget getAsChallengeWidget() {
+    if (type == PropertyType.WIDGET) {
+      return value as ChallengeWidget;
+    }
+
+    return null;
+  }
+
   Widget getAsWidget() {
     if (type == PropertyType.WIDGET) {
       return (value as ChallengeWidget).toWidget();
@@ -33,9 +41,9 @@ class ChallengeWidgetProperty {
 }
 
 abstract class ChallengeWidget {
+  String name();
   Widget toWidget();
   Map<String, ChallengeWidgetProperty> properties = {};
-
 
   void setPropertyValue(String name, Object value) {
     ChallengeWidgetProperty prop = properties[name];
@@ -49,5 +57,31 @@ abstract class ChallengeWidget {
 
   static List<ChallengeWidgetWidget> all() {
     return [CenterWidget.toIcon(), TextWidget.toIcon()];
+  }
+
+  bool get hasSingleChild => properties.values.any((c) => c.type == PropertyType.WIDGET);
+
+  bool get hasMultipleChildren => false;
+
+  Widget _content() {
+    if (hasSingleChild) {
+      return properties.values.firstWhere((c) => c.type == PropertyType.WIDGET).getAsChallengeWidget().toBuilderWidget();
+    } else if (hasMultipleChildren) {
+      throw 'not impl';
+    } else {
+      return Container();
+    }
+  }
+
+  Widget toBuilderWidget() {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+      ),
+      child: Column(children: [
+        Text(name()),
+        _content(),
+      ]),
+    );
   }
 }
