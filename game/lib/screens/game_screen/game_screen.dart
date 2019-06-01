@@ -4,6 +4,7 @@ import 'package:super_flutter_maker/models/challenge.dart';
 
 import '../../models/challenge_widget.dart';
 import '../../repository/challenges_repository.dart';
+import '../../util.dart';
 import 'builder_view.dart';
 import 'preview_view.dart';
 
@@ -12,10 +13,7 @@ const SLIDER_COUNT = 3;
 const TextStyle buttonsStyle = TextStyle(color: Colors.white, fontSize: 20);
 
 class GameScreen extends StatefulWidget {
-  const GameScreen({
-    Key key,
-    this.id
-  }) : super(key: key);
+  const GameScreen({Key key, this.id}) : super(key: key);
 
   final String id;
 
@@ -78,25 +76,32 @@ class _GameScreenState extends State<GameScreen> {
               left: 0.0,
               right: 0.0,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  FlatButton(
-                    child: Text('Back', style: buttonsStyle),
-                    onPressed: () {
+                  GestureDetector(
+                    child: pad(Icon(Icons.arrow_back, color: Colors.white)),
+                    onTap: () {
                       Navigator.of(context).pop();
                     },
                   ),
-                  FlatButton(
-                    child: Text('Goal', style: buttonsStyle),
-                    onPressed: () => swiperController.move(0),
-                  ),
-                  FlatButton(
-                    child: Text('Builder', style: buttonsStyle),
-                    onPressed: () => swiperController.move(1),
-                  ),
-                  FlatButton(
-                    child: Text('Preview', style: buttonsStyle),
-                    onPressed: () => swiperController.move(2),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        FlatButton(
+                          child: Text('Goal', style: buttonsStyle),
+                          onPressed: () => swiperController.move(0),
+                        ),
+                        FlatButton(
+                          child: Text('Builder', style: buttonsStyle),
+                          onPressed: () => swiperController.move(1),
+                        ),
+                        FlatButton(
+                          child: Text('Preview', style: buttonsStyle),
+                          onPressed: () => swiperController.move(2),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
