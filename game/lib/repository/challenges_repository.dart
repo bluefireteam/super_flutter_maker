@@ -12,10 +12,9 @@ class ChallengeRepository {
     helloWorldChallenge.difficultyLevel = 1;
 
 
-    helloWorldChallenge.widgets = [
+    helloWorldChallenge.child =
       CenterWidget()
-        ..setPropertyValue("child", TextWidget()..setPropertyValue("text", "Hello World"))
-    ];
+        ..setPropertyValue("child", TextWidget()..setPropertyValue("text", "Hello World"));
 
     List<Challenge> _challenges = [helloWorldChallenge];
   }
