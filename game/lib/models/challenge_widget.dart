@@ -86,7 +86,16 @@ abstract class ChallengeWidget {
         ),
         child: Column(
           children: [
-            Text(name(), style: TextStyle(color: color)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                pad(Text(name(), style: TextStyle(color: color))),
+                if (isMe) Row(children: [
+                  pad(Icon(Icons.edit, color: Colors.white), p: 4.0),
+                  pad(Icon(Icons.delete, color: Colors.white), p: 4.0),
+                ]),
+              ],
+            ),
             ...properties
                 .entries
                 .where((entry) => entry.value.type == PropertyType.STRING)
