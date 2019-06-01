@@ -26,7 +26,12 @@ class _GameScreenState extends State<GameScreen> {
 
   _GameScreenState() {
     challenge = ChallengeRepository().allChallenges().first;
-    currentWidget = challenge.child;
+  }
+
+  updateWidgetTree(ChallengeWidget newWidgetTree) {
+    setState(() {
+      currentWidget = newWidgetTree;
+    });
   }
 
   Widget slider(BuildContext context) {
@@ -36,7 +41,7 @@ class _GameScreenState extends State<GameScreen> {
           case 0:
             return PreviewView(challenge.child);
           case 1:
-            return BuilderView(currentWidget);
+            return BuilderView(currentWidget, updateWidgetTree);
           case 2:
             return PreviewView(currentWidget);
           default:

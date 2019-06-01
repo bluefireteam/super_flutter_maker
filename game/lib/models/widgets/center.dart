@@ -16,10 +16,12 @@ class CenterWidget extends ChallengeWidget {
     return Center(child: getProperty('child').getAsWidget());
   }
 
-  static ChallengeWidgetWidget toIcon() {
+  static ChallengeWidgetWidget toIcon(void Function(ChallengeWidget) onClick) {
     return ChallengeWidgetWidget(
       icon: Image.asset('assets/images/widgets/center.png'),
       text: 'Center',
+      creator: () => CenterWidget(),
+      onClick: onClick,
     );
   }
 }

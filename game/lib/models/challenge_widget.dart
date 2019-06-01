@@ -56,8 +56,8 @@ abstract class ChallengeWidget {
     return properties[name];
   }
 
-  static List<ChallengeWidgetWidget> all() {
-    return [CenterWidget.toIcon(), TextWidget.toIcon()];
+  static List<ChallengeWidgetWidget> all(void Function(ChallengeWidget) onClick) {
+    return [CenterWidget.toIcon(onClick), TextWidget.toIcon(onClick)];
   }
 
   bool get hasSingleChild => properties.values.any((c) => c.type == PropertyType.WIDGET);
@@ -66,7 +66,8 @@ abstract class ChallengeWidget {
 
   Widget _content() {
     if (hasSingleChild) {
-      return properties.values.firstWhere((c) => c.type == PropertyType.WIDGET).getAsChallengeWidget().toBuilderWidget();
+      final widget = properties.values.firstWhere((c) => c.type == PropertyType.WIDGET);
+      return widget?.getAsChallengeWidget()?.toBuilderWidget() ?? Container();
     } else if (hasMultipleChildren) {
       throw 'not impl';
     } else {

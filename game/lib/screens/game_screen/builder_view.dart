@@ -5,8 +5,9 @@ import '../../util.dart';
 
 class BuilderView extends StatelessWidget {
   final ChallengeWidget currentWidget;
+  final void Function(ChallengeWidget) updateCallback;
 
-  BuilderView(this.currentWidget);
+  BuilderView(this.currentWidget, this.updateCallback);
 
   Widget slider(BuildContext context) {
     return Container(
@@ -15,11 +16,25 @@ class BuilderView extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           Container(width: 8.0),
-          ...ChallengeWidget.all(),
+          ...ChallengeWidget.all(this.addWidget),
           Container(width: 8.0),
         ],
       ),
     );
+  }
+
+  void addWidget(ChallengeWidget widget) {
+    if (currentWidget == null) {
+      updateCallback(widget);
+    }
+  }
+
+  Widget _emptySate() {
+    return Text('Choose a widget to start with...');
+  }
+
+  Widget _content() {
+    return currentWidget?.toBuilderWidget() ?? _emptySate();
   }
 
   @override
@@ -29,7 +44,7 @@ class BuilderView extends StatelessWidget {
         Expanded(
           child: Container(
             color: Colors.cyan,
-            child: pad(currentWidget.toBuilderWidget()),
+            child: pad(_content()),
           ),
         ),
         slider(context),

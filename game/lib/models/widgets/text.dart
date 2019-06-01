@@ -16,10 +16,12 @@ class TextWidget extends ChallengeWidget {
     return Text(getProperty('text').getAsString());
   }
 
-  static ChallengeWidgetWidget toIcon() {
+  static ChallengeWidgetWidget toIcon(void Function(ChallengeWidget) onClick) {
     return ChallengeWidgetWidget(
       icon: Image.asset('assets/images/widgets/text.png'),
       text: 'Text',
+      creator: () => TextWidget(),
+      onClick: onClick,
     );
   }
 }
