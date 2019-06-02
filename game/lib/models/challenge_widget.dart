@@ -9,6 +9,7 @@ import 'property_editors/property_editor.dart';
 import 'property_editors/string_editor.dart';
 import 'widgets/center.dart';
 import 'widgets/column.dart';
+import 'widgets/expanded.dart';
 import 'widgets/positioned.dart';
 import 'widgets/raised_button.dart';
 import 'widgets/row.dart';
@@ -122,6 +123,7 @@ abstract class ChallengeWidget {
       RaisedButtonWidget.toIcon(onClick),
       StackWidget.toIcon(onClick),
       PositionedWidget.toIcon(onClick),
+      ExpandedWidget.toIcon(onClick),
     ];
   }
 
