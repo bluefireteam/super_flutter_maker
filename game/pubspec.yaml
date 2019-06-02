@@ -31,6 +31,8 @@ flutter:
     - assets/images/widgets/row.png
     - assets/images/widgets/column.png
     - assets/images/widgets/raised_button.png
+    - assets/images/widgets/stack.png
+    - assets/images/widgets/positioned.png
     - assets/images/icons/dash-baby.png
     - assets/images/icons/dash.png
     - assets/images/icons/dash-expert.png

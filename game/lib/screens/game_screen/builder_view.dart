@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import './empty_state.dart';
 import '../../models/challenge_widget.dart';
 import '../../util.dart';
-import './empty_state.dart';
+import 'edit_dialog.dart';
 
 class BuilderView extends StatefulWidget {
   final ChallengeWidget currentWidget;
@@ -38,8 +39,9 @@ class _BuilderViewState extends State<BuilderView> {
       selectedWidget.setPropertyValue('child', w);
       widget.updateCallback(widget.currentWidget);
     } else if (selectedWidget != null && selectedWidget.hasMultipleChildren) {
-      final currentChildren = selectedWidget.getProperty('children').getAsChallengeWidgetList() ?? [];
-
+      final currentChildren =
+          selectedWidget.getProperty('children').getAsChallengeWidgetList() ??
+              [];
       selectedWidget.setPropertyValue('children', [...currentChildren, w]);
       widget.updateCallback(widget.currentWidget);
     }
@@ -71,41 +73,19 @@ class _BuilderViewState extends State<BuilderView> {
         _clearOf(widget, removed);
       }
     } else if (current.hasMultipleChildren) {
-      List<ChallengeWidget> children = current.childrenProperty?.getAsChallengeWidgetList();
+      List<ChallengeWidget> children =
+          current.childrenProperty?.getAsChallengeWidgetList();
 
       final newChildren = children.where((w) => w != removed);
       current.setPropertyValue('children', newChildren.toList());
     }
   }
 
-  void doEdit(ChallengeWidget widget) {
+  void doEdit(ChallengeWidget w) {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-              title: Text('Properties'),
-              content: Column(
-                  children: widget.listEditableProperties()
-                    .map((entry) {
-                      return TextField(
-                          controller: TextEditingController(text: entry.value?.getAsString()),
-                          decoration: InputDecoration(labelText: entry.key),
-                          onChanged: (value) {
-                            widget.setPropertyValue(entry.key, value);
-                          }
-                      );
-                    }).toList()
-              ),
-              actions: [
-                FlatButton(
-                    child: Text('Ok'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    }
-                )
-              ]
-          );
-        }
+      context: context,
+      builder: (BuildContext context) =>
+          EditDialog(widget: w, doUpdateParent: () => this.setState(() {})),
     );
   }
 

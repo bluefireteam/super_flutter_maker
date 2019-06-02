@@ -4,14 +4,27 @@ import 'package:flutter/material.dart';
 
 import '../screens/game_screen/challenge_widget_widget.dart';
 import '../util.dart';
+import 'property_editors/double_editor.dart';
+import 'property_editors/property_editor.dart';
+import 'property_editors/string_editor.dart';
 import 'widgets/center.dart';
 import 'widgets/column.dart';
+import 'widgets/positioned.dart';
 import 'widgets/raised_button.dart';
 import 'widgets/row.dart';
+import 'widgets/stack.dart';
 import 'widgets/text.dart';
+
+const EDITABLE_PROPS = [ PropertyType.STRING, PropertyType.DOUBLE ];
+
+final Map<PropertyType, PropertyEditor> propertyEditors = {
+  PropertyType.STRING: StringEditor(),
+  PropertyType.DOUBLE: DoubleEditor(),
+};
 
 enum PropertyType {
   STRING,
+  DOUBLE,
   WIDGET,
   WIDGET_LIST,
 }
@@ -23,8 +36,21 @@ class ChallengeWidgetProperty {
   ChallengeWidgetProperty(this.type);
 
   String getAsString() {
+    if (value == null) {
+      return null;
+    }
     if (type == PropertyType.STRING) {
       return value as String;
+    }
+    if (type == PropertyType.DOUBLE) {
+      return (value as double).toString();
+    }
+    return null;
+  }
+
+  double getAsDouble() {
+    if (type == PropertyType.DOUBLE) {
+      return value as double;
     }
 
     return null;
@@ -56,7 +82,7 @@ class ChallengeWidgetProperty {
 
   List<Widget> getAsWidgetList() {
     if (type == PropertyType.WIDGET_LIST) {
-      return (value as List<ChallengeWidget>)?.map((w) => w.toWidget()).toList();
+      return (value as List<ChallengeWidget>)?.map((w) => w.toWidget())?.toList();
     }
 
     return null;
@@ -84,7 +110,7 @@ abstract class ChallengeWidget {
   }
 
   List<MapEntry<String, ChallengeWidgetProperty>> listEditableProperties() {
-    return properties.entries.where((entry) => entry.value.type == PropertyType.STRING).toList();
+    return properties.entries.where((entry) => EDITABLE_PROPS.contains(entry.value.type)).toList();
   }
 
   static List<ChallengeWidgetWidget> all(void Function(ChallengeWidget) onClick) {
@@ -94,6 +120,8 @@ abstract class ChallengeWidget {
       ColumnWidget.toIcon(onClick),
       RowWidget.toIcon(onClick),
       RaisedButtonWidget.toIcon(onClick),
+      StackWidget.toIcon(onClick),
+      PositionedWidget.toIcon(onClick),
     ];
   }
 
@@ -154,12 +182,11 @@ abstract class ChallengeWidget {
                 ]),
               ],
             ),
-            ...properties
-                .entries
-                .where((entry) => entry.value.type == PropertyType.STRING)
-                .map((entry) {
-                  return Text('${entry.key} - ${entry.value?.getAsString() ?? '(empty)'}', style: TextStyle(color: color));
-                }).cast().toList(),
+            ...listEditableProperties()
+                .map((entry) => Text(
+                  '${entry.key} - ${entry.value?.getAsString() ?? '(empty)'}',
+                  style: TextStyle(color: color),
+                )).cast().toList(),
             pad(_content(currentSelected, doSelect, doEdit, doRemove)),
           ],
         ),
