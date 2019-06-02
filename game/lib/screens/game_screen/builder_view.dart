@@ -102,7 +102,7 @@ class _BuilderViewState extends State<BuilderView> {
         Expanded(
           child: Container(
             color: Colors.cyan,
-            child: pad(_content()),
+            child: SingleChildScrollView(child: pad(_content())),
           ),
         ),
         slider(context),

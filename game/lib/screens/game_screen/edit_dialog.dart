@@ -53,25 +53,27 @@ class _EditDialogState extends State<EditDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
         title: Text('Properties'),
-        content: Column(
-            children: challengeWidget.listEditableProperties().map((entry) {
-          InputBorder border = errors.containsKey(entry.key)
-              ? OutlineInputBorder(
-                  borderSide: new BorderSide(color: Colors.red, width: 2.0),
-                )
-              : null;
-          return TextField(
-              controller: controllers[entry.key],
-              decoration: InputDecoration(
-                labelText: entry.key,
-                enabledBorder: border,
-                focusedBorder: border,
-                errorBorder: border,
-                focusedErrorBorder: border,
-                border: border,
-              ),
-            );
-        }).toList()),
+        content: SingleChildScrollView(
+          child: Column(
+              children: challengeWidget.listEditableProperties().map((entry) {
+            InputBorder border = errors.containsKey(entry.key)
+                ? OutlineInputBorder(
+                    borderSide: new BorderSide(color: Colors.red, width: 2.0),
+                  )
+                : null;
+            return TextField(
+                controller: controllers[entry.key],
+                decoration: InputDecoration(
+                  labelText: entry.key,
+                  enabledBorder: border,
+                  focusedBorder: border,
+                  errorBorder: border,
+                  focusedErrorBorder: border,
+                  border: border,
+                ),
+              );
+          }).toList()),
+        ),
         actions: [
           FlatButton(
               child: Text('Cancel'),
