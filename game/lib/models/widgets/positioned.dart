@@ -44,6 +44,12 @@ class PositionedWidget extends ChallengeWidget {
   Map<String, dynamic> toMap() {
     return {
       'class': name(),
+      'width': getProperty('width')?.getAsDouble(),
+      'height': getProperty('height')?.getAsDouble(),
+      'left': getProperty('left')?.getAsDouble(),
+      'right': getProperty('right')?.getAsDouble(),
+      'top': getProperty('top')?.getAsDouble(),
+      'bottom': getProperty('bottom')?.getAsDouble(),
       'child': getProperty('child')?.getAsChallengeWidget()?.toMap(),
     };
   }

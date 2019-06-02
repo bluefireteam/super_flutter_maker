@@ -34,6 +34,7 @@ flutter:
     - assets/images/widgets/stack.png
     - assets/images/widgets/positioned.png
     - assets/images/widgets/expanded.png
+    - assets/images/widgets/container.png
     - assets/images/icons/dash-baby.png
     - assets/images/icons/dash.png
     - assets/images/icons/dash-expert.png
