@@ -39,4 +39,4 @@ The proud developers that brought this game about are:
  * Pedro "Roccinho" Zaroni \<[mugbug](https://github.com/mugbug)> \<pedro.zaroni@dextra-sw.com>
  * Tyemy Kuga \<[tyemy](https://github.com/tyemy)> \<tyemy.kuga@dextra-sw.com>
 
-We also thank everyone that helped a lot in our Hub, and all the teams that collaborated, specially to Renan C. Araújo \<[renancaraujo](https://github.com/renancaraujo)>
+We also thank everyone that helped a lot in our Hub, and all the teams that collaborated, specially to Renan C. Araújo \<[renancaraujo](https://github.com/renancaraujo)> \<renan.araujo@dextra-sw.com>, who organized the event and helped us a lot in the meantime.
