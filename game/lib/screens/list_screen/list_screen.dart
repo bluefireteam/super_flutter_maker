@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:super_flutter_maker/models/challenge.dart';
-import 'package:super_flutter_maker/repository/challenges_repository.dart';
+import '../../models/challenge.dart';
+import '../../repository/challenges_repository.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({Key key}) : super(key: key);
@@ -66,7 +66,7 @@ class ChallengeListElement extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).pushNamed('/game/' + challenge.id);
+        Navigator.of(context).pushNamed('/game/${challenge.id}');
       },
     );
   }
