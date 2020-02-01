@@ -7,9 +7,11 @@ class EditDialog extends StatefulWidget {
   final ChallengeWidget widget;
   final void Function() doUpdateParent;
 
-  const EditDialog(
-      {Key key, @required this.widget, @required this.doUpdateParent})
-      : super(key: key);
+  const EditDialog({
+    Key key,
+    @required this.widget,
+    @required this.doUpdateParent,
+  }) : super(key: key);
 
   @override
   _EditDialogState createState() => _EditDialogState(widget, doUpdateParent);

@@ -40,17 +40,14 @@ class _BuilderViewState extends State<BuilderView> {
       widget.updateCallback(widget.currentWidget);
     } else if (selectedWidget != null && selectedWidget.hasMultipleChildren) {
       final currentChildren =
-          selectedWidget.getProperty('children').getAsChallengeWidgetList() ??
-              [];
+          selectedWidget.getProperty('children').getAsChallengeWidgetList() ?? [];
       selectedWidget.setPropertyValue('children', [...currentChildren, w]);
       widget.updateCallback(widget.currentWidget);
     }
   }
 
   void doSelect(ChallengeWidget select) {
-    setState(() {
-      selectedWidget = select;
-    });
+    setState(() => selectedWidget = select);
   }
 
   void doRemove(ChallengeWidget removed) {
