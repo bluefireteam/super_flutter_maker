@@ -45,21 +45,26 @@ class ChallengeListElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-          padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
-          decoration: new BoxDecoration(
-            border: new Border(
-              bottom: BorderSide(color: Colors.grey),
-            ),
+        padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colors.grey),
           ),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(challenge.title,
-                style: new TextStyle(
-                  fontSize: 20.0,
-                )),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
             Image.asset(difficultyImagePath(), height: 60, width: 60),
-            Icon(Icons.arrow_forward_ios)
-          ])),
+            Expanded(
+              child: Text(
+                challenge.title,
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ),
+            Icon(Icons.arrow_forward_ios),
+          ],
+        ),
+      ),
       onTap: () {
         Navigator.of(context).pushNamed('/game/' + challenge.id);
       },
